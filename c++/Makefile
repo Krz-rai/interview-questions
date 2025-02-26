@@ -7,7 +7,7 @@ dummy:=$(shell mkdir -p $(TARGET))
 .PHONY: all clean
 
 all: src/test.cpp
-	$(CXX) $(CXXFLAGS) -o $(TARGET)/lru_cpp src/test.cpp
+	$(CXX) $(CXXFLAGS) -std=c++14 -stdlib=libc++ -o $(TARGET)/lru_cpp src/test.cpp
 
 clean:
 	-rm -rf target

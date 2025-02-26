@@ -5,13 +5,14 @@ class LRUCache:
         self.lru = {}
 
     def refer(self, key):
-        # not present in cache
-
-        # present in cache
-
-        # update reference
+        if key in self.lru:
+            self.cache.remove(key)
+        elif len(self.cache) >= self.capacity:
+            oldest = self.cache.pop()
+            self.lru.pop(oldest)
+            
+        self.cache.insert(0, key)
+        self.lru[key] = True
 
     def display(self):
-        for i in self.cache:
-            print(i,end=' ')
-        print('')
+        print(*self.cache, '')

@@ -1,15 +1,10 @@
-# Get the GCC preinstalled image from Docker Hub
-FROM gcc
+FROM gcc:latest
 
-# Copy the current folder which contains C++ source code to the Docker image under /usr/src
 COPY src /usr/src/
 COPY Makefile /usr/src/
 
-# Specify the working directory
 WORKDIR /usr/src/
 
-# Use GCC to compile the Test.cpp source file
-RUN make
+RUN mkdir -p target && g++ -std=c++11 -o target/lru_cpp src/test.cpp
 
-# Run the program output from the previous step
-CMD ["./lru_cpp"]
+CMD ["./target/lru_cpp"]
